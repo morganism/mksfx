@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/mksfx'
+
+begin
+  Mksfx::CLI.start(ARGV)
+rescue Interrupt
+  puts "\n\nInterrupted"
+  exit 130
+rescue Mksfx::Error => e
+  $stderr.puts "\e[31mError: #{e.message}\e[0m"
+  exit 1
+end
